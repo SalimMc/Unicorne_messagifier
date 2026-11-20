@@ -1,0 +1,13 @@
+{
+  "name": "unicorne-messagifier",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Turns plain text or markdown messages into emoji + kaomoji versions, fully in the browser.",
+  "type": "module",
+  "scripts": {
+    "start": "python -m http.server 8790",
+    "test": "node --test",
+    "try": "node tools/try.mjs",
+    "build-data": "python tools/build_data.py raw"
+  }
+}
