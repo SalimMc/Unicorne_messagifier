@@ -3,7 +3,7 @@
  * @module app
  */
 import { messagify, parseKaomoji, detectLang } from "./messagify.js";
-import { PARTY_AT_CONVERSION, startDanceParty } from "./easter-egg.js?v=8";
+import { PARTY_AT_CONVERSION, armDanceParty, startDanceParty } from "./easter-egg.js?v=9";
 
 const $ = (id) => document.getElementById(id);
 const els = {
@@ -57,6 +57,7 @@ async function convert() {
 let conversions = 0;
 async function onConvertClick() {
   seed = 0;
+  armDanceParty(); // prepares the sound chain during a real click so the party starts instantly
   if (await convert() && ++conversions === PARTY_AT_CONVERSION) startDanceParty();
 }
 
