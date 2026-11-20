@@ -3,6 +3,7 @@
  * @module app
  */
 import { messagify, parseKaomoji, detectLang } from "./messagify.js";
+import { PARTY_AT_CONVERSION, startDanceParty } from "./easter-egg.js";
 
 const $ = (id) => document.getElementById(id);
 const els = {
@@ -28,12 +29,13 @@ async function loadLang(lang) {
 // ---------- conversion ----------
 const currentLevel = () => Number(document.querySelector('input[name="level"]:checked')?.value ?? 2);
 
+/** @returns {Promise<boolean>} true when a message was converted */
 async function convert() {
   const text = els.input.value;
   if (!text.trim()) {
     els.output.value = "";
     els.info.textContent = "";
-    return;
+    return false;
   }
   const lang = els.lang.value === "auto" ? detectLang(text) : els.lang.value;
   els.info.textContent = "⏳";
@@ -43,10 +45,19 @@ async function convert() {
     els.output.value = result.text;
     els.output.scrollTop = 0;
     els.info.textContent = `· ${result.lang}`;
+    return true;
   } catch (err) {
     els.info.textContent = "⚠️ could not load data";
     console.error(err);
+    return false;
   }
+}
+
+/** Convert button: counts conversions and starts the dance party on the 5th one. */
+let conversions = 0;
+async function onConvertClick() {
+  seed = 0;
+  if (await convert() && ++conversions === PARTY_AT_CONVERSION) startDanceParty();
 }
 
 // ---------- copy ----------
@@ -80,7 +91,7 @@ function updateCount() {
 }
 
 // ---------- events ----------
-els.go.addEventListener("click", () => { seed = 0; convert(); });
+els.go.addEventListener("click", onConvertClick);
 els.reroll.addEventListener("click", () => { seed++; convert(); });
 els.lang.addEventListener("change", convert);
 levelInputs.forEach((input) => input.addEventListener("change", convert));
