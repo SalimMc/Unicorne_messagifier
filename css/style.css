@@ -157,16 +157,18 @@ textarea::-webkit-scrollbar-thumb:hover { background-color: var(--accent-2); }
 footer { padding: 14px 0 20px; text-align: center; color: var(--muted); font-size: .82rem; }
 
 /* ============ easter egg: dance party ============ */
-.party {
-  position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 16px; padding: 24px 16px; background: rgba(12, 6, 18, .88); backdrop-filter: blur(6px); animation: party-in .3s ease-out;
+/* appears instantly, full screen, with a "jump scare" punch-in and shake */
+.party { position: fixed; inset: 0; z-index: 100; overflow: hidden; background: #000; cursor: pointer; }
+.party-gif { width: 100%; height: 100%; object-fit: cover; animation: party-punch .5s cubic-bezier(.2, 2.2, .4, 1) both,
+  party-shake .12s linear .5s 6; }
+.party-close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: rgba(0, 0, 0, .45); color: #fff; font-size: 20px; cursor: pointer; }
+.party-close:hover { background: rgba(0, 0, 0, .7); }
+@keyframes party-punch { from { transform: scale(2.2); } to { transform: scale(1); } }
+@keyframes party-shake {
+  25% { transform: translate(-12px, 8px) rotate(-1.5deg); }
+  75% { transform: translate(12px, -8px) rotate(1.5deg); }
 }
-.party-title { margin: 0; color: #fff; text-align: center; font: 600 clamp(1.3rem, 4vw, 2.2rem) var(--font-display); }
-.party-gif { max-width: min(92vw, 900px); max-height: 70vh; border-radius: var(--radius); box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
-.party-close { position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; border: 0; border-radius: 50%;
-  background: rgba(255, 255, 255, .15); color: #fff; font-size: 20px; cursor: pointer; }
-.party-close:hover { background: rgba(255, 255, 255, .3); }
-@keyframes party-in { from { opacity: 0; transform: scale(1.04); } }
 
 /* ============ mobile ============ */
 @media (max-width: 820px) {
@@ -182,4 +184,5 @@ footer { padding: 14px 0 20px; text-align: center; color: var(--muted); font-siz
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  .party-gif { animation: none; }
 }
