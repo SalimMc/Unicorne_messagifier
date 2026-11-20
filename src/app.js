@@ -3,7 +3,7 @@
  * @module app
  */
 import { messagify, parseKaomoji, detectLang } from "./messagify.js";
-import { PARTY_AT_CONVERSION, armDanceParty, startDanceParty } from "./easter-egg.js?v=9";
+import { PARTY_AT_CONVERSION, armDanceParty, startDanceParty } from "./easter-egg.js?v=10";
 
 const $ = (id) => document.getElementById(id);
 const els = {

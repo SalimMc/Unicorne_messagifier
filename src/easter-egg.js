@@ -14,7 +14,7 @@ const VOLUME_BOOST = 8;
 /** Distortion amount: 0 = clean, higher = more saturated (400 is "blown speaker" territory). */
 const DISTORTION = 400;
 /** The song starts here, right in the beat. */
-const START_AT_SECONDS = 1;
+const START_AT_SECONDS = 3.5;
 /** Max wait for the first note before showing the GIF anyway. */
 const SYNC_TIMEOUT_MS = 400;
 
