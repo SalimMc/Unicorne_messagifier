@@ -18,7 +18,8 @@ Works in 🇬🇧 English, 🇫🇷 French, 🇨🇿 Czech and 🇸🇦 Arabic (
 index.html            page markup
 css/style.css         page styles (light + dark)
 src/
-  app.js              UI wiring: lazy data loading, buttons, copy
+  app.js              UI wiring: lazy data loading, buttons, copy, theme
+  easter-egg.js       dance party on the 5th conversion (GIF + song)
   messagify.js        public API: messagify(), intensity LEVELS, LANGS
   decorator.js        per-line / per-sentence / per-word decoration
   emotion.js          Sentence state, emotion -> kaomoji category, emotion emojis
@@ -29,6 +30,8 @@ src/
 data/
   kaomoji.txt         kaomojis grouped by category (edit freely)
   {en,fr,cs,ar}.json  generated: word -> emojis ("e"), word -> NRC emotion codes ("m")
+assets/
+  audio/              easter-egg song, preloaded on page load
 tools/
   build_data.py       regenerates data/*.json from the raw sources
   try.mjs             try the converter in a terminal

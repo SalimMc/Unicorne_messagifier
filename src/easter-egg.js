@@ -1,6 +1,6 @@
 /**
  * Easter egg: on the Nth conversion of a visit, a full-screen dance party shows up
- * (dancing GIF + "I Like to Move It" from Madagascar, played through a YouTube embed).
+ * (dancing GIF + "I Like to Move It" from Madagascar).
  * @module easter-egg
  */
 
@@ -8,8 +8,11 @@
 export const PARTY_AT_CONVERSION = 5;
 
 const GIF_URL = "https://media.giphy.com/media/ptS6CV6Ty7Dt26k6wq/giphy.gif";
-/** YouTube video id of the song; swap it if this video ever stops allowing embeds. */
-const SONG_VIDEO_ID = "nuOpil0L-kg";
+
+// The song is downloaded as soon as the page loads, so it starts instantly with the GIF.
+const song = new Audio("assets/audio/i-like-to-move-it.mp3");
+song.preload = "auto";
+song.loop = true;
 
 /** Opens the dance party overlay. Closing it (button, backdrop click or Escape) stops the music. */
 export function startDanceParty() {
@@ -22,13 +25,11 @@ export function startDanceParty() {
   overlay.innerHTML = `
     <button class="party-close" type="button" aria-label="Close">✕</button>
     <p class="party-title">🎉 5 messages! I like to move it, move it! 🎉</p>
-    <img class="party-gif" src="${GIF_URL}" alt="Animals dancing">
-    <iframe class="party-song" title="I Like to Move It - Madagascar"
-      src="https://www.youtube-nocookie.com/embed/${SONG_VIDEO_ID}?autoplay=1&loop=1&playlist=${SONG_VIDEO_ID}"
-      allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+    <img class="party-gif" src="${GIF_URL}" alt="Animals dancing">`;
 
   const close = () => {
-    overlay.remove(); // removing the iframe stops the song
+    overlay.remove();
+    song.pause();
     document.removeEventListener("keydown", onKey);
   };
   const onKey = (e) => { if (e.key === "Escape") close(); };
@@ -39,4 +40,7 @@ export function startDanceParty() {
   document.addEventListener("keydown", onKey);
   document.body.append(overlay);
   overlay.querySelector(".party-close").focus();
+
+  song.currentTime = 0;
+  song.play().catch((err) => console.warn("Song could not start:", err));
 }

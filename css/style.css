@@ -163,7 +163,6 @@ footer { padding: 14px 0 20px; text-align: center; color: var(--muted); font-siz
 }
 .party-title { margin: 0; color: #fff; text-align: center; font: 600 clamp(1.3rem, 4vw, 2.2rem) var(--font-display); }
 .party-gif { max-width: min(92vw, 900px); max-height: 70vh; border-radius: var(--radius); box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
-.party-song { position: fixed; right: 16px; bottom: 16px; width: 200px; height: 113px; border: 0; border-radius: 12px; }
 .party-close { position: fixed; top: 16px; right: 16px; width: 44px; height: 44px; border: 0; border-radius: 50%;
   background: rgba(255, 255, 255, .15); color: #fff; font-size: 20px; cursor: pointer; }
 .party-close:hover { background: rgba(255, 255, 255, .3); }
