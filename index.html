@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unicorne Messagifier</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦄</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+  <h1>🦄 Unicorne Messagifier ✨</h1>
+  <p class="sub">Colle un message (texte ou markdown) ➜ récupère une version pleine d'emojis et de kaomojis (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</p>
+
+  <div class="grid">
+    <div class="box">
+      <label for="in">Ton message</label>
+      <textarea id="in" dir="auto" placeholder="Salut ! J'ai enfin fini mon projet, je suis trop content !!!"></textarea>
+    </div>
+    <button class="go" id="go" title="Messagifier (Ctrl+Entrée)" aria-label="Messagifier">➜</button>
+    <div class="box">
+      <div class="row"><label for="out">Résultat</label><span class="tag" id="info"></span></div>
+      <textarea id="out" dir="auto" readonly placeholder="(｡･ω･｡) ..."></textarea>
+    </div>
+  </div>
+
+  <div class="bar">
+    <select id="lang" aria-label="Langue">
+      <option value="auto">🌍 Langue : auto</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="cs">🇨🇿 Čeština</option>
+      <option value="ar">🇸🇦 العربية</option>
+    </select>
+    <select id="level" aria-label="Intensité">
+      <option value="1">(˘ω˘) Sobre</option>
+      <option value="2" selected>(＾▽＾) Normal</option>
+      <option value="3">(╯°□°）╯︵ ┻━┻ Chaos</option>
+    </select>
+    <button class="btn" id="reroll" title="Autre tirage">🎲 Autre version</button>
+    <button class="btn" id="copy">📋 Copier</button>
+  </div>
+
+  <footer>
+    100% dans ton navigateur, rien n'est envoyé nulle part. Emojis : <a href="https://cldr.unicode.org/">Unicode CLDR</a> ·
+    Émotions : <a href="https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC Emotion Lexicon</a> (usage non commercial).
+  </footer>
+</main>
+
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
