@@ -1,2 +1,5 @@
 # Kaomojis grouped by category. One kaomoji per line; a "# name" line starts a category.
 # Category names are used by src/emotion.js and src/lexicon.js. Add kaomojis freely.
+
+# joy
+^_^
