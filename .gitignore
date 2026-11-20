@@ -1,0 +1,4 @@
+# raw downloads used by tools/build_data.py
+raw/
+__pycache__/
+node_modules/
