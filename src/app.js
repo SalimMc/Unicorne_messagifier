@@ -7,7 +7,7 @@ import { messagify, parseKaomoji, detectLang } from "./messagify.js";
 const $ = (id) => document.getElementById(id);
 const els = {
   input: $("in"), output: $("out"), info: $("info"), go: $("go"),
-  lang: $("lang"), reroll: $("reroll"), copy: $("copy"), theme: $("theme"),
+  lang: $("lang"), reroll: $("reroll"), copy: $("copy"), theme: $("theme"), count: $("count"),
 };
 const levelInputs = document.querySelectorAll('input[name="level"]');
 
@@ -55,29 +55,28 @@ async function copyOutput() {
   try {
     await navigator.clipboard.writeText(els.output.value);
   } catch {
+    // fallback for browsers without the async clipboard API
     els.output.select();
     document.execCommand("copy");
+    els.output.setSelectionRange(0, 0);
+    els.output.blur();
   }
-  els.copy.textContent = "✅";
-  els.copy.classList.add("done");
-  setTimeout(() => {
-    els.copy.textContent = "📋";
-    els.copy.classList.remove("done");
-  }, 1200);
+  els.copy.classList.add("copied"); // CSS swaps the copy icon for a check mark
+  setTimeout(() => els.copy.classList.remove("copied"), 1400);
 }
 
-// ---------- theme ----------
-const isDark = () => {
-  const forced = document.documentElement.dataset.theme;
-  return forced ? forced === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-};
-const syncThemeIcon = () => { els.theme.textContent = isDark() ? "☀️" : "🌙"; };
-
+// ---------- theme (initial value is set by the inline script in index.html) ----------
 function toggleTheme() {
-  const next = isDark() ? "light" : "dark";
-  document.documentElement.dataset.theme = next;
+  const root = document.documentElement;
+  const next = root.dataset.theme === "dark" ? "light" : "dark";
+  root.dataset.theme = next;
   try { localStorage.setItem("theme", next); } catch { /* storage unavailable: theme lasts this visit only */ }
-  syncThemeIcon();
+}
+
+// ---------- character counter ----------
+function updateCount() {
+  const n = els.input.value.length;
+  els.count.textContent = `${n} char${n === 1 ? "" : "s"}`;
 }
 
 // ---------- events ----------
@@ -93,4 +92,5 @@ els.input.addEventListener("keydown", (e) => {
     els.go.click();
   }
 });
-syncThemeIcon();
+els.input.addEventListener("input", updateCount);
+updateCount();
