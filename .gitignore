@@ -1,4 +1,21 @@
 # raw downloads used by tools/build_data.py
 raw/
-__pycache__/
+
+# dependencies and caches
 node_modules/
+__pycache__/
+*.pyc
+
+# editors and tools
+.claude/
+.vscode/
+.idea/
+*.swp
+
+# environment and secrets
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
