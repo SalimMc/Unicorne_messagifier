@@ -60,7 +60,9 @@ Intensity: `1` subtle, `2` normal, `3` chaos. The output is deterministic for a 
 
 ## Deploying (GitHub Pages)
 
-On GitHub: **Settings ➜ Pages ➜ Source: Deploy from a branch ➜ `main` / `(root)`**.
+`.github/workflows/deploy.yml` runs the tests on every push and pull request, then deploys
+`index.html`, `css/`, `src/` and `data/` from `main`.
+One-time setup on GitHub: **Settings ➜ Pages ➜ Source: GitHub Actions**.
 The site is then served at `https://<user>.github.io/<repo>/`.
 
 ## Regenerating the data (optional)
