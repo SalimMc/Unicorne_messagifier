@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="196" height="35" viewBox="0 0 196 35" role="img" aria-label="Powered by tea">
+  <title>Powered by tea</title>
+  <rect width="123" height="35" fill="#b5d36a"/>
+  <rect x="123" width="73" height="35" fill="#4f8a2e"/>
+  <g font-family="Montserrat, 'Segoe UI', Verdana, sans-serif" font-size="12" letter-spacing="2" text-anchor="middle">
+    <text x="61.5" y="22" fill="#2b3a12" font-weight="500">POWERED BY</text>
+    <text x="159.5" y="22" fill="#ffffff" font-weight="900">TEA</text>
+  </g>
+</svg>
